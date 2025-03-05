@@ -4,18 +4,17 @@ A lightweight Python package and command-line interface (CLI) tool that extracts
 
 ## Features
 
-- Extract audio from YouTube videos or playlists in various formats: MP3, WAV, OGG, AAC, and FLAC
-- Customize the output audio file name
-- By default, names the audio file after the YouTube video title
-- Extract audio from YouTube videos using different clients (e.g., `MWEB`, `WEB`, `ANDROID`)
-- Automatically clean up temporary video files after extraction
+- Extract audio from YouTube videos or playlists in various formats: MP3, WAV, OGG, AAC, FLAC, M4A, and OPUS.
+- Customize the output audio file name.
+- By default, names the audio files and playlists after the YouTube video or playlist title.
+- Automatically cleans up temporary video files after extraction.
 
 ## Installation
 
 To install the package from PyPI, run the following command:
 
 ```
-pip install youtube_to_audio
+pip install youtube-to-audio
 ```
 
 ## Usage
@@ -23,23 +22,23 @@ pip install youtube_to_audio
 ### 1. Download and Extract Audio from a Single Video in the Default Format (MP3)
 
 ```
-youtube-to-audio "https://www.youtube.com/watch?v=WysanSNOjMc"
+youtube-to-audio --url "https://www.youtube.com/watch?v=WysanSNOjMc"
 ```
 
-This command extracts the audio in MP3 format and saves it with the same name as the YouTube video title (e.g., `Your Video Title.mp3`).
+This command extracts the audio in MP3 format and saves it with the same name as the YouTube video title (e.g., `The Video Title.mp3`).
 
 ### 2. Extract Audio from a Playlist in MP3 Format
 
 ```
-youtube-to-audio "https://www.youtube.com/playlist?list=PLRBp0Fe2GpgnymQGm0yIxcdzkQsPKwnBD"
+youtube-to-audio --url "https://www.youtube.com/playlist?list=PLRBp0Fe2GpgnymQGm0yIxcdzkQsPKwnBD"
 ```
 
-This command extracts the audio from all videos in the playlist and saves each file with the same name as the YouTube video title (e.g., `Video1.mp3`, `Video2.mp3`, etc.).
+This command extracts audio from all videos in a playlist and saves each file by default in a folder named after the playlist, using the YouTube video title as the filename (e.g., `Video1.mp3`, `Video2.mp3`, etc.).
 
-### 3. Extract Audio in WAV Format
+### 3. Extract Audio in a Different Format (e.g., WAV)
 
 ```
-youtube-to-audio "https://www.youtube.com/watch?v=WysanSNOjMc" wav
+youtube-to-audio --url "https://www.youtube.com/watch?v=WysanSNOjMc" --format wav
 ```
 
 This command extracts the audio in WAV format and saves it with the YouTube video title (e.g., `Your Video Title.wav`).
@@ -47,49 +46,51 @@ This command extracts the audio in WAV format and saves it with the YouTube vide
 ### 4. Specify a Custom Audio File Name
 
 ```
-youtube-to-audio "https://www.youtube.com/watch?v=WysanSNOjMc" wav --output my_custom_name
+youtube-to-audio --url "https://www.youtube.com/watch?v=WysanSNOjMc" --format wav --output_name "my_custom_name"
 ```
 
 This command extracts the audio in WAV format and saves it as `my_custom_name.wav`.
 
-### 5. Extract Audio Using a Specific YouTube Client (e.g., MWEB or WEB)
-
-You can extract audio from YouTube videos or playlists using different clients (for example, `MWEB`, `WEB`, or `ANDROID`) by specifying the `--client` argument:
+### 5. Extract a Playlist into a Custom Folder
 
 ```
-youtube-to-audio "https://www.youtube.com/watch?v=WysanSNOjMc" flac --client WEB
+youtube-to-audio --url "https://www.youtube.com/playlist?list=PLRBp0Fe2GpgnymQGm0yIxcdzkQsPKwnBD" --playlist_name "MyPlaylist"
 ```
 
-> **Note:** If audio extraction fails with one client, try switching to a different client (e.g., from `MWEB` to `WEB` or `ANDROID`) to resolve the issue.
+This saves all extracted audio files inside a folder named `MyPlaylist` instead of using the default playlist title.
 
-### 6. Enable Verbose Logging
+---
 
-To enable detailed logging (useful for debugging the download or extraction process), use the `--verbose` flag:
+## Command-Line Options
 
-```
-youtube-to-audio "https://www.youtube.com/watch?v=WysanSNOjMc" aac --verbose
-```
+| Option            | Description                                                      | Required             | Usage Scenario                           |
+| ----------------- | ---------------------------------------------------------------- | -------------------- | ---------------------------------------- |
+| `--url`           | YouTube video or playlist URL                                    | ✅ Yes               | Required for all cases                   |
+| `--format`        | Audio format (`mp3`, `wav`, `flac`, `aac`, `ogg`, `m4a`, `opus`) | ❌ No (default: mp3) | Extracting in a specific format          |
+| `--output_name`   | Custom output file name (single videos only)                     | ❌ No                | Naming a single file differently         |
+| `--playlist_name` | Custom folder name for playlist downloads                        | ❌ No                | Saving a playlist into a specific folder |
 
-This will display detailed logs during the download and extraction process.
+---
 
-## Development
+## Requirements
 
-If you'd like to contribute or modify the package locally, clone the repository and install the development dependencies:
-
-```
-pip install -r requirements-dev.txt
-```
-
-### Running Tests
-
-To run tests, you can use `pytest` (after installing the development dependencies):
-
-```
-pytest
-```
+This tool requires **FFmpeg** to be installed on your system. If FFmpeg is not found, the tool will not be able to extract audio.
 
 ---
 
 ### License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Contributing
+
+Contributions are welcome! If you have suggestions or bug fixes, feel free to open a pull request.
+
+---
+
+## Author
+
+Developed by **Jack Tol**  
+[GitHub Repository](https://github.com/jack-tol/youtube-to-audio)
