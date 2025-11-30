@@ -1,0 +1,8 @@
+Metadata-Version: 2.4
+Name: youtube-to-audio
+Version: 1.0.0
+License-File: LICENSE
+Requires-Dist: yt-dlp>=2023.12.30
+Requires-Dist: click>=8.0.0
+Dynamic: license-file
+Dynamic: requires-dist
