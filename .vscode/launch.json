@@ -1,0 +1,49 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: YouTube-to-Audio CLI (Module)",
+            "type": "python",
+            "request": "launch",
+            "module": "youtube_to_audio.cli",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "--url",
+                "https://www.youtube.com/watch?v=GK3lNhU2_vU"
+            ],
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "Python: YouTube-to-Audio CLI (Direct)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/youtube_to_audio/cli.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "--url",
+                "https://www.youtube.com/watch?v=GK3lNhU2_vU"
+            ],
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        }
+    ]
+}
+
